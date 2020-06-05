@@ -11,20 +11,23 @@ const errorController = require('./controllers/error');
 const User = require('./models/user');
 
 
-const host = "localhost";
-const port = "27017";
-const db = "book_store"; // database name
-//set url
-const MONGODB_URI =
-  "imongodb+srv://jaiiparmar:admin7600@cluster0-gn50g.mongodb.net/book_store?retryWrites=true&w=majority";
+// const host = "localhost";
+// const port = "27017";
+// const db = "book_store"; // database name
+// //set url
+// const MONGODB_URI =
+//   "imongodb+srv://jaiiparmar:admin7600@cluster0-gn50g.mongodb.net/book_store?retryWrites=true&w=majority";
 
 
 
 const app = express();
-const store = new MongoDBStore({
-  uri: MONGODB_URI,
-  collection: 'sessions'
-});
+
+ var uristring = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || "mongodb://localhost/book_store";
+
+   const store = new MongoDBStore({
+     uri: uristring,
+     collection: "sessions",
+   });
 const csrfProtection = csrf();
 
 app.set('view engine', 'ejs');
@@ -72,11 +75,10 @@ app.use(errorController.get404);
 
   const PORT = process.env.PORT || 5000;
 mongoose
-  .connect(MONGODB_URI, { useUnifiedTopology: true })
-  .then(result => {
-
+  .connect(uristring, { useUnifiedTopology: true })
+  .then((result) => {
     app.listen(PORT);
   })
-  .catch(err => {
+  .catch((err) => {
     console.err(err);
   });
