@@ -22,7 +22,11 @@ const User = require('./models/user');
 
 const app = express();
 
- var uristring = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || "mongodb://localhost/book_store";
+ var uristring =
+   process.env.MONGODB_URI ||
+   process.env.MONGOHQ_URL ||
+   process.env.MONGOLAB_URI ||
+   "mongodb://localhost/book_store";
 
    const store = new MongoDBStore({
      uri: uristring,
@@ -75,10 +79,10 @@ app.use(errorController.get404);
 
   const PORT = process.env.PORT || 5000;
 mongoose
-  .connect(uristring, { useUnifiedTopology: true })
+  .connect(uristring, { useUnifiedTopology: true, useNewUrlParser: true})
   .then((result) => {
     app.listen(PORT);
   })
   .catch((err) => {
-    console.err(err);
+    console.err(err); 
   });
