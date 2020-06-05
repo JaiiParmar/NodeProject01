@@ -15,7 +15,10 @@ const host = "localhost";
 const port = "27017";
 const db = "book_store"; // database name
 //set url
-const MONGODB_URI = `mongodb://${host}:${port}/${db}`;
+const MONGODB_URI =
+  "imongodb+srv://jaiiparmar:admin7600@cluster0-gn50g.mongodb.net/book_store?retryWrites=true&w=majority";
+
+
 
 const app = express();
 const store = new MongoDBStore({
