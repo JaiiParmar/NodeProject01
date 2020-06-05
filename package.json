@@ -10,9 +10,6 @@
   },
   "author": "Maximilian Schwarzmüller",
   "license": "ISC",
-  "devDependencies": {
-    "nodemon": "^1.18.3"
-  },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
@@ -27,6 +24,7 @@
     "mongoose": "^5.2.17",
     "mysql2": "^1.6.1",
     "pug": "^2.0.3",
-    "sequelize": "^5.0.0-beta.11"
+    "sequelize": "^5.0.0-beta.11",
+     "nodemon": "^1.18.3"
   }
 }
